@@ -6,8 +6,8 @@ myMap
   .set(1, "one")
   .set("Tiago", { text: "two" })
   .set(true, () => "hello");
-
-// usando um construtor
+// aqui estamos definindo as chavez/valores
+// outra forma de definir é usando um construtor
 const myMapWithConstructor = new Map([
   ["1", "str1"],
   [1, "num1"],
@@ -28,13 +28,14 @@ const onlyReferenceWorks = { id: 1 };
 myMap.set(onlyReferenceWorks, { name: "TiagoLandim" });
 
 // console.log("get", myMap.get({ id: 1 }));
-// se tentarmos chamar assim vai retornar como undefined
-// quando setarmos por chave é sempre por referencia
+// se tentarmos chamar com a chave vai retornar como undefined
+// quando setarmos por chavetemos que chamar sempre por referencia
 // console.log("get", myMap.get(onlyReferenceWorks));
 assert.deepStrictEqual(myMap.get({ id: 1 }), undefined);
 assert.deepStrictEqual(myMap.get(onlyReferenceWorks), { name: "TiagoLandim" });
 
 // utilitarios
+// para saber a quantidade de itens dentro do objeto
 // no Object seria Object.keys({a: 1}).length
 assert.deepStrictEqual(myMap.size, 4);
 
@@ -81,11 +82,12 @@ assert.ok(myMap.has(actor));
 // Aqui verificamos e o toString não virou propriedade
 assert.throws(() => myMap.get(actor).toString, TypeError);
 
-// No Object não temos como limpar o OBJ sem reassina-lo ou passar chave por chave e definilas como undefined
+// No Object não temos como limpar o OBJ sem reassina-lo
+// ou passar chave por chave e definilas como undefined
 myMap.clear();
 assert.deepStrictEqual([...myMap.keys()], []);
 
-// --0----- WeakMap
+// ------- WeakMap
 
 /**
  * Pode ser coletado apos perder as referencias
@@ -102,7 +104,7 @@ assert.deepStrictEqual([...myMap.keys()], []);
 const weakMap = new WeakMap();
 const hero = { name: "Batman" };
 
-// contem apenas os 4 metodos a baixo
+// weakMap contem apenas os 4 metodos a baixo
 // weakMap.set(hero);
 // weakMap.get(hero);
 // weakMap.delete(hero);
